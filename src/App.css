@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FAFAFA;
+}
+
+.button-add {
+  display: inline;
+  font-size: 1.2em;
+}
+
+.todo-delete-button {
+  margin-left: 20px;
+}
+
+.input-title {
+  font-size: 1.5em;
+  width: 350px;
+}
+
+.task-list {
+  border: 1px solid gray;
+  padding:15px;
+  background-color: rgb(226, 224, 224);
+  width: 80%;
+}
+
+.task-list li {
+  padding-left: 0;
+  margin: 15px;
+}
