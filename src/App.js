@@ -22,29 +22,34 @@ class MyProvider extends Container {
     ]
   }
 
-  onAddTask = (title) => {
-    console.log("adding...");
-    let maxId = Math.max.apply(Math,
-      this.state.tasks.map((task)=>{return task.id}));
+  actions = {
+    onAddTask: (title) => {
+      console.log("adding...");
+      let maxId = Math.max.apply(Math,
+        this.state.tasks.map((task)=>{return task.id}));
 
-    let task = {
-      id:  maxId + 1 ,
-      title: title
+      let task = {
+        id:  maxId + 1 ,
+        title: title
+      }
+
+      this.setState({
+        tasks: [task, ...this.state.tasks]
+      })
+    },
+
+    onDeleteTask: (taskId) => {
+      console.log("onDeleteTask...");
+      let tasks = this.state.tasks.filter((task) => {
+        return task.id !== taskId
+      })
+
+      this.setState({
+        tasks
+      }, ()=> {
+        console.log("after update: ",this.state.tasks);
+      });
     }
-
-    this.setState({
-      tasks: [task, ...this.state.tasks]
-    })
-  }
-
-  onDeleteTask = (taskId) => {
-    let tasks = this.state.tasks.filter((task) => {
-      return task.id !== taskId
-    })
-
-    this.setState({
-      tasks
-    })
   }
 
   render () {

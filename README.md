@@ -35,7 +35,7 @@ here is available to the consumer/subscriber.
 In case you don't want any specific action to be available just begin the
 name of the action/method with an underscore,'_'
 ```js
-// Create a Provider
+
 class MyProvider extends Container {
   state = {
     tasks: [
@@ -51,34 +51,34 @@ class MyProvider extends Container {
     ]
   }
 
-  onAddTask = (title) => {
-    console.log("adding...");
-    let maxId = Math.max.apply(Math,
-      this.state.tasks.map((task)=>{return task.id}));
+  actions = {
+    onAddTask: (title) => {
+      console.log("adding...");
+      let maxId = Math.max.apply(Math,
+        this.state.tasks.map((task)=>{return task.id}));
 
-    let task = {
-      id:  maxId + 1 ,
-      title: title
+      let task = {
+        id:  maxId + 1 ,
+        title: title
+      }
+
+      this.setState({
+        tasks: [task, ...this.state.tasks]
+      })
+    },
+
+    onDeleteTask: (taskId) => {
+      console.log("onDeleteTask...");
+      let tasks = this.state.tasks.filter((task) => {
+        return task.id !== taskId
+      })
+
+      this.setState({
+        tasks
+      }, ()=> {
+        console.log("after update: ",this.state.tasks);
+      });
     }
-
-    this.setState({
-      tasks: [task, ...this.state.tasks]
-    })
-  }
-
-  onDeleteTask = (taskId) => {
-    let tasks = this.state.tasks.filter((task) => {
-      return task.id !== taskId
-    })
-
-    this.setState({
-      tasks
-    })
-  }
-  
-  // This method is private and won't be available in the context.
-  _privateMethod = () => {
-    console.log("I am private!");
   }
 
   render () {
@@ -86,8 +86,8 @@ class MyProvider extends Container {
     return super.render();
   }
 }
-
 ```
+All state/data should go into the state property of the Provider class.  And all actions should go into the action object.
 
 In the render() of the provider ensure to call the render of the base class
 by calling super.render();
@@ -162,7 +162,7 @@ const TaskForm = () => (
 export default TaskForm;
 ```
 
-The TaskForm needs the context, as it has to invoke the onAddTask method when the button is clicked.
+The TaskForm needs the context, as it has to invoke the onAddTask method when the add button is clicked.
 
 The below is the code for the TaskList component.  The TaskList component
 also needs the context as it needs both the state info as well as the 
@@ -269,7 +269,8 @@ class App extends Component {
 ```
 In the App component we just wrap our Time component within the TimeProvider and voila we are done.
 
-I will be updating this demo as this is still WIP.
+I will be updating this demo as this is still WIP.  Hope you like this approach.  There could be many open queries, which I will address as I add more features to this and probable unit test cases as well.
+
 ## Sending Feedback
 
 We are always open to [your feedback](https://github.com/rajeshpillai/react-restated/issues).
