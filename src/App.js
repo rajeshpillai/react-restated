@@ -6,7 +6,7 @@ import TaskApp from './Components/TaskApp';
 import Notification from './Components/Notification';
 
 // Create a Provider
-class MyProvider extends Component {
+class MyProvider extends Container {
   state = {
     tasks: [
       {id: 1, title: "New React Context API"},
@@ -22,6 +22,7 @@ class MyProvider extends Component {
   }
 
   addTask = (title) => {
+    console.log("adding...");
     let maxId = Math.max.apply(Math,
       this.state.tasks.map((task)=>{return task.id}));
 
@@ -45,23 +46,13 @@ class MyProvider extends Component {
     })
   }
 
-  render() {
-    return (
-      <MyContext.Provider value={{
-          state: this.state,
-          onAddTask: (task) => this.addTask(task),
-          onDeleteTask: (taskId) => this.deleteTask(taskId)
-      }}>
-          {this.props.children}
-      </MyContext.Provider>
-    )
+  render () {
+    console.log("About to call parent render..");
+    return super.render();
   }
 }
 
-
-
 class App extends Component {
-
   render() {
     return (
       <MyProvider>
