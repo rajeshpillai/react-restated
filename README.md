@@ -1,4 +1,4 @@
-THe project is inspired from react-unstated and couple of other articles.(https://github.com/jamiebuilds/unstated).  It is only intended for educational purpose as of now.
+The project is inspired from react-unstated and couple of other articles.(https://github.com/jamiebuilds/unstated).  It is only intended for educational purpose as of now.
 
 ## Table of Contents
 
