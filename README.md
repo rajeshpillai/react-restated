@@ -5,6 +5,7 @@ The project is inspired from react-unstated and couple of other articles.(https:
 - [Introduction to reStated](#intro-to-restated)
 - [Installation](#installation)
 - [Usage Examples](#usage-examples)
+- [Source Code](#source-code)
 - [Sending Feedback](#sending-feedback)
 
 ## Introduction to reStated
@@ -268,6 +269,38 @@ class App extends Component {
 
 ```
 In the App component we just wrap our Time component within the TimeProvider and voila we are done.
+
+## Source Code
+
+```js
+import React, { Component } from 'react';
+
+// Create a context
+export const StateContext = React.createContext(null);
+export const {Provider, Consumer} = StateContext;
+
+export class Container extends Component {
+    constructor() {
+        super();
+        this.setup = this.setup.bind(this);
+    }
+    
+    setup() {
+        let map = {};
+        map.state = this.state;
+        map.actions = this.actions;
+        return map;
+    }
+    render () {
+        let map = this.setup();
+        return (
+          <Provider value={map}>
+            {this.props.children}
+          </Provider>
+        )
+      }
+}
+```
 
 I will be updating this demo as this is still WIP.  Hope you like this approach.  There could be many open queries, which I will address as I add more features to this and probable unit test cases as well.
 
