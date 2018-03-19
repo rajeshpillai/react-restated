@@ -3,7 +3,7 @@ THe project is inspired from react-unstated and couple of other articles.(https:
 ## Table of Contents
 
 - [Introduction to reStated](#intro-to-restated)
-- [Installation] (#installation)
+- [Installation](#installation)
 - [Usage Examples](#usage-examples)
 - [Sending Feedback](#sending-feedback)
 
