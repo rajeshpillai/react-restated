@@ -1,8 +1,8 @@
 import React from 'react';
-import {StateContext as MyContext} from '../ReStated';
+import {StateContext } from '../ReStated';
 
 const TaskForm = () => (
-    <MyContext.Consumer>
+    <StateContext.Consumer>
       {(context) => (
         <div>
             <input className="input-title" ref={(title)=>{this.taskTitle = title}} 
@@ -13,7 +13,7 @@ const TaskForm = () => (
             </button>
         </div>
       )}
-    </MyContext.Consumer>
+    </StateContext.Consumer>
 )
 
 export default TaskForm;

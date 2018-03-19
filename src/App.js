@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {StateContext as MyContext, Container} from './ReStated';
+import {StateContext, Container} from './ReStated';
 
 import TaskApp from './Components/TaskApp';
 import Notification from './Components/Notification';
@@ -59,11 +59,11 @@ class App extends Component {
         <div className="container">
           <h1>Task Management App</h1>
           <TaskApp />
-          <MyContext.Consumer>
+          <StateContext.Consumer>
             {(context) => (
                 <Notification context={context} />
             )}
-          </MyContext.Consumer>
+          </StateContext.Consumer>
         </div>
       </MyProvider>
     );
