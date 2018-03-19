@@ -162,7 +162,11 @@ const TaskForm = () => (
 export default TaskForm;
 ```
 
-The below is the code for the TaskList component.
+The TaskForm needs the context, as it has to invoke the onAddTask method when the button is clicked.
+
+The below is the code for the TaskList component.  The TaskList component
+also needs the context as it needs both the state info as well as the 
+actions.
 
 ```js
 import React from 'react';
@@ -194,6 +198,76 @@ const TaskList = () => {
 export default TaskList;
 
 ```
+We can also create multiple providers if need be.   For e.g. let's  create
+a TimeProvider which supplies time and also a Time component that needs data
+from the TimeProvider.
+
+The below is the code for TimeProvider.  Just extend any class from the 
+Component and it has all the features required to become a Provider.
+
+```js
+import React from 'react';
+import {Container} from '../ReStated';
+
+export default class TimeProvider extends Container {
+    state = {
+        time: new Date()
+    }
+    render () {
+        return super.render();
+    }
+}
+```
+The TimeProvider above exposes only a state object with one attribute time.
+But you can use this as per your requirements add add methods, more properties etc.
+
+Now lets create a <Time/> component that uses TimeProvider.
+
+```js
+import React from 'react';
+import {Consumer} from '../ReStated';
+
+const Time = () => {
+    return (
+      <Consumer>
+        {({state}) => (
+          <span className="time">{state.time.toString()}</span>
+        )}
+      </Consumer>
+    );
+}
+
+export default Time;
+```
+To get the context we just have to wrap our component within the <Consumer>
+component.
+
+Now let's see how we can integrate this in our App component.
+
+```js
+class App extends Component {
+  render() {
+    return (
+      <MyProvider>
+        <div className="container">
+          <h1>Task Management App</h1>
+          <TaskApp />
+          <Consumer>
+            {(context) => (
+                <Notification context={context} />
+            )}
+          </Consumer>
+        </div>
+        <TimeProvider>
+            <Time />
+        </TimeProvider>
+      </MyProvider>
+    );
+  }
+}
+
+```
+In the App component we just wrap our Time component within the TimeProvider and voila we are done.
 
 I will be updating this demo as this is still WIP.
 ## Sending Feedback
