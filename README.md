@@ -32,8 +32,8 @@ Create a Provider.  The provider should extends from the Container class.
 The provider exposes state and the actions.  By default all actions defined
 here is available to the consumer/subscriber.
 
-In case you don't want any specific action to be available just being the
-name of the action with an underscore,'_'
+In case you don't want any specific action to be available just begin the
+name of the action/method with an underscore,'_'
 ```js
 // Create a Provider
 class MyProvider extends Container {
