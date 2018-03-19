@@ -14,8 +14,11 @@ class MyProvider extends Component {
   }
 
   addTask = (title) => {
+    let maxId = Math.max.apply(Math,
+      this.state.tasks.map((task)=>{return task.id}));
+
     let task = {
-      id: this.state.tasks.length + 1 ,
+      id: maxId + 1 ,
       title: title
     }
 
@@ -75,7 +78,7 @@ const TaskList = () => {
   const renderUI = (context) => {
     return context.state.tasks.map((task) => {
       return (
-        <li className="task-item">
+        <li className="task-item" key={task.id}>
           <span>{task.title}</span>
           <button className="todo-delete-button"
             onClick={(e) => context.onDeleteTask(task.id)}>
