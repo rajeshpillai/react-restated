@@ -16,6 +16,8 @@ export class Container extends Component {
     render () {
         console.log("Called parent render");
         let map = {};
+
+        // todo: This code may be refactored
         for (var property in this) {
             console.log(property);
             //map.set(property, this[property]);

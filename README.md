@@ -75,6 +75,11 @@ class MyProvider extends Container {
       tasks
     })
   }
+  
+  // This method is private and won't be available in the context.
+  _privateMethod = () => {
+    console.log("I am private!");
+  }
 
   render () {
     console.log("About to call parent render..");
