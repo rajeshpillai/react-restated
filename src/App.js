@@ -21,7 +21,7 @@ class MyProvider extends Container {
     ]
   }
 
-  addTask = (title) => {
+  onAddTask = (title) => {
     console.log("adding...");
     let maxId = Math.max.apply(Math,
       this.state.tasks.map((task)=>{return task.id}));
@@ -36,7 +36,7 @@ class MyProvider extends Container {
     })
   }
 
-  deleteTask = (taskId) => {
+  onDeleteTask = (taskId) => {
     let tasks = this.state.tasks.filter((task) => {
       return task.id !== taskId
     })
