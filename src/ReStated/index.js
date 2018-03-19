@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 // Create a context
 export const StateContext = React.createContext(null);
+export const {Provider, Consumer} = StateContext;
 
 const SKIP_PROPERTIES = ["props", "context", 
                           "refs", "updater",
@@ -25,9 +26,9 @@ export class Container extends Component {
         }
         console.dir(map);
         return (
-          <StateContext.Provider value={map}>
+          <Provider value={map}>
             {this.props.children}
-          </StateContext.Provider>
+          </Provider>
         )
       }
 }

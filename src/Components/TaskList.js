@@ -1,5 +1,5 @@
 import React from 'react';
-import {StateContext} from '../ReStated';
+import {Consumer} from '../ReStated';
 
 const TaskList = () => {
     const renderUI = (context) => {
@@ -16,11 +16,11 @@ const TaskList = () => {
         })
     }
     return (
-        <StateContext.Consumer>
+        <Consumer>
             {(context) => (
                 renderUI(context)
             )}
-        </StateContext.Consumer>
+        </Consumer>
     )
 }
 

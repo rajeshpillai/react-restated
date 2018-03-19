@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import {StateContext, Container} from './ReStated';
+import {StateContext, Consumer, Container} from './ReStated';
 
 import TaskApp from './Components/TaskApp';
 import Notification from './Components/Notification';
+import TimeProvider from './Providers/TimeProvider';
+import Time from './Components/Time';
 
 // Create a Provider
 class MyProvider extends Container {
@@ -59,12 +61,15 @@ class App extends Component {
         <div className="container">
           <h1>Task Management App</h1>
           <TaskApp />
-          <StateContext.Consumer>
+          <Consumer>
             {(context) => (
                 <Notification context={context} />
             )}
-          </StateContext.Consumer>
+          </Consumer>
         </div>
+        <TimeProvider>
+            <Time />
+        </TimeProvider>
       </MyProvider>
     );
   }
