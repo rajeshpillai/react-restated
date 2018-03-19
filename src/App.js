@@ -10,6 +10,12 @@ class MyProvider extends Component {
       {id: 1, title: "New React Context API"},
       {id: 2, title: "Learn VueJS"},
       {id: 3, title: "Master NodeJS"},
+    ],
+    notifications: [
+      {taskId: 1, message: "Message 1 TaskID 1"},
+      {taskId: 1, message: "Message 2 TaskID 1"},
+      {taskId: 2, message: "Message 1 for TaskID 2"},
+      
     ]
   }
 
@@ -18,7 +24,7 @@ class MyProvider extends Component {
       this.state.tasks.map((task)=>{return task.id}));
 
     let task = {
-      id: maxId + 1 ,
+      id:  maxId + 1 ,
       title: title
     }
 
@@ -74,6 +80,25 @@ const TaskForm = () => (
   </MyContext.Consumer>
 )
 
+class Notification extends Component{
+  constructor(props) {
+    super(props);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return(this.props.children !== nextProps.children);
+  }
+  componentDidMount() {
+    console.log(this.props.context.state.notifications);
+  }
+  render() {
+    console.log("Notifications->render");
+    return (
+      <h2>{this.props.children}</h2>
+    );
+  }
+}
+
 const TaskList = () => {
   const renderUI = (context) => {
     return context.state.tasks.map((task) => {
@@ -105,6 +130,11 @@ class App extends Component {
         <div className="container">
           <h1>Task Management App</h1>
           <TaskApp />
+          <MyContext.Consumer>
+            {(context) => (
+                <Notification context={context} />
+            )}
+          </MyContext.Consumer>
         </div>
       </MyProvider>
     );
