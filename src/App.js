@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
+import {StateContext as MyContext, Container} from './ReStated';
 
-const MyContext = React.createContext();
+import TaskApp from './Components/TaskApp';
+import Notification from './Components/Notification';
 
 // Create a Provider
 class MyProvider extends Component {
@@ -56,71 +58,7 @@ class MyProvider extends Component {
   }
 }
 
-const TaskApp = () => (
-  <React.Fragment>
-    <TaskForm />
-    <ul className = "task-list">
-        <TaskList/>
-    </ul>
-  </React.Fragment>
-)
 
-const TaskForm = () => (
-  <MyContext.Consumer>
-    {(context) => (
-      <div>
-          <input className="input-title" ref={(title)=>{this.taskTitle = title}} 
-            type="text" placeholder="what do you want to do today?" />
-          <button className="button-add" type="submit"
-            onClick={(e) => {context.onAddTask(this.taskTitle.value)}}>
-            &#x271A;
-          </button>
-      </div>
-    )}
-  </MyContext.Consumer>
-)
-
-class Notification extends Component{
-  constructor(props) {
-    super(props);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return(this.props.children !== nextProps.children);
-  }
-  componentDidMount() {
-    console.log(this.props.context.state.notifications);
-  }
-  render() {
-    console.log("Notifications->render");
-    return (
-      <h2>{this.props.children}</h2>
-    );
-  }
-}
-
-const TaskList = () => {
-  const renderUI = (context) => {
-    return context.state.tasks.map((task) => {
-      return (
-        <li className="task-item" key={task.id}>
-          <span>{task.title}</span>
-          <button className="todo-delete-button"
-            onClick={(e) => context.onDeleteTask(task.id)}>
-             &#x274C;
-          </button>
-        </li>
-      )
-    })
-  }
-  return (
-    <MyContext.Consumer>
-      {(context) => (
-          renderUI(context)
-      )}
-    </MyContext.Consumer>
-  )
-}
 
 class App extends Component {
 
