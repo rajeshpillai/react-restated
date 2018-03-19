@@ -3,12 +3,20 @@ THe project is inspired from react-unstated and couple of other articles.(https:
 ## Table of Contents
 
 - [Introduction to reStated](#intro-to-restated)
+- [Installation] (#installation)
 - [Usage Examples](#usage-examples)
 - [Sending Feedback](#sending-feedback)
 
 ## Introduction to reStated
 
 ReStated is a state management library using more of an object oriented approach.
+
+## Installation
+Right now the entire source code lives withing the below folder
+(https://github.com/rajeshpillai/react-restated/tree/master/src/ReStated/index.js)
+
+I will create an NPM package once I test this enough as I don't want to 
+pollute the npm repository.
 
 ## Usage Examples
 

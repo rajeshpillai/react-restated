@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {StateContext, Consumer, Container} from './ReStated';
-
+import {Consumer, Container} from './ReStated';
 import TaskApp from './Components/TaskApp';
 import Notification from './Components/Notification';
 import TimeProvider from './Providers/TimeProvider';
